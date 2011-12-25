@@ -424,10 +424,7 @@ function import_avatar_gallery($gallery_name = '', $subdirs_as_galleries = false
 
 	$relative_path = empty($convert->convertor['source_path_absolute']);
 
-	// strip trailing slash
-	$avatar_gallery_path = rtrim($convert->convertor['avatar_gallery_path'], '/');
-
-	if (empty($avatar_gallery_path))
+	if (empty($convert->convertor['avatar_gallery_path']))
 	{
 		$convert->p_master->error(sprintf($user->lang['CONV_ERROR_NO_GALLERY_PATH'], 'import_avatar_gallery()'), __LINE__, __FILE__);
 	}
@@ -591,10 +588,7 @@ function import_attachment($source, $use_target = false)
 
 	global $convert, $phpbb_root_path, $config, $user;
 
-	// strip trailing slash
-	$upload_path = rtrim($convert->convertor['upload_path'], '/');
-
-	if (empty($upload_path))
+	if (empty($convert->convertor['upload_path']))
 	{
 		$convert->p_master->error(sprintf($user->lang['CONV_ERROR_NO_UPLOAD_DIR'], 'import_attachment()'), __LINE__, __FILE__);
 	}
@@ -653,10 +647,7 @@ function import_smiley($source, $use_target = false)
 
 	global $convert, $phpbb_root_path, $config, $user;
 
-	// strip trailing slash
-	$smilies_path = rtrim($convert->convertor['smilies_path'], '/');
-
-	if (empty($smilies_path))
+	if (!isset($convert->convertor['smilies_path']))
 	{
 		$convert->p_master->error(sprintf($user->lang['CONV_ERROR_NO_SMILIES_PATH'], 'import_smiley()'), __LINE__, __FILE__);
 	}
@@ -676,10 +667,7 @@ function import_avatar($source, $use_target = false, $user_id = false)
 
 	global $convert, $phpbb_root_path, $config, $user;
 
-	// strip trailing slash
-	$avatar_path = rtrim($convert->convertor['avatar_path'], '/');
-
-	if (empty($avatar_path))
+	if (!isset($convert->convertor['avatar_path']))
 	{
 		$convert->p_master->error(sprintf($user->lang['CONV_ERROR_NO_AVATAR_PATH'], 'import_avatar()'), __LINE__, __FILE__);
 	}
@@ -2481,5 +2469,7 @@ function fill_dateformat($user_dateformat)
 
 	return ((empty($user_dateformat)) ? $config['default_dateformat'] : $user_dateformat);
 }
+
+
 
 ?>
